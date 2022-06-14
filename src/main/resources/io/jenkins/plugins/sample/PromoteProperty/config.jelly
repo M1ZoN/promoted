@@ -1,0 +1,8 @@
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+    <f:section title="Promote Build">
+        <f:entry title="Add manual build promotion" description="Adds manual build promotion possibility.">
+            <f:checkbox name="promote" field="promote"/>
+        </f:entry>
+    </f:section>
+</j:jelly>
