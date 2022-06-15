@@ -8,7 +8,8 @@ import org.kohsuke.stapler.DataBoundConstructor;
 
 import java.io.IOException;
 
-public class PromoteProperty extends JobProperty<Job<?, ?>>{
+@SuppressWarnings("unused")
+public class PromoteProperty extends JobProperty<Job<?, ?>> {
     private boolean promote;
 
     @DataBoundConstructor
@@ -24,19 +25,16 @@ public class PromoteProperty extends JobProperty<Job<?, ?>>{
         this.promote = promote;
     }
 
-    public static PromoteDescriptor get() {
-        return (PromoteDescriptor) Jenkins.get().getDescriptor(PromoteProperty.class);
-    }
-
-
     @Override
     public boolean perform(AbstractBuild<?, ?> build, Launcher launcher, BuildListener listener) throws InterruptedException, IOException {
-
         if (promote) {
-            build.addAction(new PromotedBuildAction(promote ? "Promoted" : "Not Promoted"));
+            build.addAction(new PromotedBuildAction("Promoted"));
         }
-        listener.getLogger().println("This is logged from Promote Property. isPromote checked?: " + promote);
         return super.perform(build, launcher, listener);
+    }
+
+    public static PromoteDescriptor get() {
+        return (PromoteDescriptor) Jenkins.get().getDescriptor(PromoteProperty.class);
     }
 
     @Override
@@ -46,7 +44,8 @@ public class PromoteProperty extends JobProperty<Job<?, ?>>{
 
     @Extension
     public static final class PromoteDescriptor extends JobPropertyDescriptor {
-//        private String status;
+
+        private String status;
 
         public PromoteDescriptor() {
             load();
@@ -54,11 +53,11 @@ public class PromoteProperty extends JobProperty<Job<?, ?>>{
 
         @Override
         public String getDisplayName() {
-            return "Manual build promotion";
+            return "Cucumber Slack Notifier";
         }
 
-//        public String getStatus() {
-//            return status;
-//        }
+        public String getStatus() {
+            return status;
+        }
     }
 }
