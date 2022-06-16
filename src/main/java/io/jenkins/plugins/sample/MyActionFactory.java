@@ -1,25 +1,26 @@
 package io.jenkins.plugins.sample;
 
 import edu.umd.cs.findbugs.annotations.NonNull;
-import hudson.model.Action;
-import hudson.model.Project;
+import hudson.Extension;
+import hudson.model.*;
+import jenkins.model.RunAction2;
 import jenkins.model.TransientActionFactory;
 
-import java.beans.Transient;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.logging.Logger;
 
-public class MyActionFactory extends TransientActionFactory<Project> {
-
+@Extension
+public class MyActionFactory extends TransientActionFactory<Run> {
 
     @Override
-    public Class<Project> type() {
-        return Project.class;
+    public Class<Run> type() {
+        return Run.class;
     }
 
     @NonNull
     @Override
-    public Collection<? extends Action> createFor(@NonNull Project target) {
-        return Collections.singleton(new PromotedBuildAction("Promoted"));
+    public Collection<? extends Action> createFor(@NonNull Run target) {
+        return Collections.singleton(new PromotedBuildAction("Choose promotion"));
     }
 }

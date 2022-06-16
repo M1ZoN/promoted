@@ -27,6 +27,7 @@ public class PromoteProperty extends JobProperty<Job<?, ?>> {
 
     @Override
     public boolean perform(AbstractBuild<?, ?> build, Launcher launcher, BuildListener listener) throws InterruptedException, IOException {
+        listener.getLogger().println("TESTING THE LOGGING INSIDE PROMOTE PROPERTY");
         if (promote) {
             build.addAction(new PromotedBuildAction("Promoted"));
         }
@@ -53,7 +54,7 @@ public class PromoteProperty extends JobProperty<Job<?, ?>> {
 
         @Override
         public String getDisplayName() {
-            return "Cucumber Slack Notifier";
+            return "Manual build promotion";
         }
 
         public String getStatus() {
