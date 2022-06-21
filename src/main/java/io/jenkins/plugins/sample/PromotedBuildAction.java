@@ -1,13 +1,15 @@
 package io.jenkins.plugins.sample;
 
 import hudson.model.Run;
-import jenkins.model.RunAction2;
+//import jenkins.model.RunAction2;
+import hudson.model.Action;
 
-public class PromotedBuildAction implements RunAction2 {
+public class PromotedBuildAction implements Action {
     private String status;
     private transient Run run;
 
-    public PromotedBuildAction(String status) {
+    public PromotedBuildAction(String status, Run run) {
+        this.run = run;
         this.status = status;
     }
 
@@ -17,16 +19,6 @@ public class PromotedBuildAction implements RunAction2 {
 
     public String getStatus() {
         return status;
-    }
-
-    @Override
-    public void onAttached(Run<?, ?> r) {
-        this.run = r;
-    }
-
-    @Override
-    public void onLoad(Run<?, ?> r) {
-        this.run = r;
     }
 
     @Override

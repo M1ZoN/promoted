@@ -1,9 +1,7 @@
 <?jelly escape-by-default='true'?>
 <j:jelly xmlns:j="jelly:core" xmlns:l="/lib/layout" xmlns:st="jelly:stapler" xmlns:f="/lib/form">
     <l:layout title="Promotion Status" norefresh="true">
-        <l:side-panel>
-            <st:include page="sidepanel.jelly" it="${it.run}" optional="true" />
-        </l:side-panel>
+        <st:include page="sidepanel.jelly" it="${it.run}" />
         <l:main-panel>
             <h1>
                 Status: ${it.status}
@@ -14,6 +12,9 @@
                     <option value="notPromoted">Not Promoted</option>
                 </select>
             </f:entry>
+            <f:validateButton
+                    title="${%Submit}" progress="${%Changing...}"
+                    method="" with="chosenStatus" />
         </l:main-panel>
     </l:layout>
 </j:jelly>

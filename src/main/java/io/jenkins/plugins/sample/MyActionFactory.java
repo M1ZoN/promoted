@@ -21,6 +21,6 @@ public class MyActionFactory extends TransientActionFactory<Run> {
     @NonNull
     @Override
     public Collection<? extends Action> createFor(@NonNull Run target) {
-        return Collections.singleton(new PromotedBuildAction("Choose promotion"));
+        return Collections.singleton(new PromotedBuildAction("Choose promotion", target));
     }
 }

@@ -29,7 +29,7 @@ public class PromoteProperty extends JobProperty<Job<?, ?>> {
     public boolean perform(AbstractBuild<?, ?> build, Launcher launcher, BuildListener listener) throws InterruptedException, IOException {
         listener.getLogger().println("TESTING THE LOGGING INSIDE PROMOTE PROPERTY");
         if (promote) {
-            build.addAction(new PromotedBuildAction("Promoted"));
+            build.addAction(new PromotedBuildAction("Promoted", build));
         }
         return super.perform(build, launcher, listener);
     }

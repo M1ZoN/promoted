@@ -44,7 +44,7 @@ public class PipelineProperty extends SimpleBuildWrapper {
     public void setUp(Context context, Run<?, ?> build, FilePath workspace, Launcher launcher, TaskListener listener, EnvVars initialEnvironment) throws IOException, InterruptedException {
         listener.getLogger().println("TESTING THE LOGGING INSIDE PROMOTE PROPERTY");
         if (promote) {
-            build.addAction(new PromotedBuildAction("Promoted"));
+            build.addAction(new PromotedBuildAction("Promoted", build));
         }
         super.setUp(context, build, workspace, launcher, listener, initialEnvironment);
     }
